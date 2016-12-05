@@ -7,9 +7,8 @@ class CatApi {
     const THREE_SECONDS_OF_LIFE = 3;
 
     public function getRandomImage() {
-//        if (!file_exists(__DIR__ . '/../../cache/random') 
-//                || time() - filemtime(__DIR__ . '/../../cache/random') > WAIT_TREE_SECONDS) {
-        if (!file_exists(__DIR__ . '/../../cache/random') || $this->getFileHowOldIsIt() > self::THREE_SECONDS_OF_LIFE) {
+   //       if (!file_exists(__DIR__ . '/../../cache/random') || $this->getFileHowOldIsIt() > self::THREE_SECONDS_OF_LIFE) {
+        if (!$this->fileRandomExist() || $this->getFileHowOldIsIt() > self::THREE_SECONDS_OF_LIFE) {
 
             $responseXml = @file_get_contents(
                             'http://thecatapi.com/api/images/get?format=xml&type=jpg'
@@ -31,10 +30,12 @@ class CatApi {
         }
     }
 
-    public function getFileHowOldIsIt() {
+    protected function getFileHowOldIsIt() {
         return time() - filemtime(__DIR__ . '/../../cache/random');
     }
-    
-    
+
+    protected function fileRandomExist() {
+        return file_exists(__DIR__ . '/../../cache/random');
+    }
 
 }
