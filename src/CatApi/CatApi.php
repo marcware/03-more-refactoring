@@ -27,4 +27,11 @@ class CatApi {
         return (string) $responseElement->data->images[0]->image->url;
     }
 
+    public function insertIntoFileRandom(\SimpleXMLElement $responseElement) {
+        file_put_contents(
+                __DIR__ . '/../../cache/random'
+                , (string) $responseElement->data->images[0]->image->url
+        );
+    }
+
 }
