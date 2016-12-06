@@ -18,7 +18,10 @@ class FileRandom {
     const THREE_SECONDS_OF_LIFE = 3;
 
     protected function fileHowOldIsIt() {
-        return time() - filemtime(__DIR__ . '/../../cache/random');
+        echo "\n Tiempo del fichero ";
+        echo $time = time() - filemtime(__DIR__ . '/../../cache/random');
+        echo "\n";
+        return $time;
     }
 
     protected function fileRandomExist() {
