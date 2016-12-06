@@ -1,6 +1,7 @@
 <?php
 
 namespace CatApi;
+//use CatApi\DownloadedFile;
 
 class CatApi {
 
@@ -23,13 +24,14 @@ class CatApi {
         $responseElement = new \SimpleXMLElement($responseXml);
 
         file_put_contents(
-                __DIR__ . '/../../cache/random', (string) $responseElement->data->images[0]->image->url
+                __DIR__ . '/../../cache/random'
+                , (string) $responseElement->data->images[0]->image->url
         );
 
         return (string) $responseElement->data->images[0]->image->url;
     }
 
-    protected function getFileHowOldIsIt() {
+    protected function fileHowOldIsIt() {
         return time() - filemtime(__DIR__ . '/../../cache/random');
     }
 
@@ -39,7 +41,7 @@ class CatApi {
 
     protected function conditionsToShowFile() {
         $showPhoto = FALSE;
-        if ($this->fileRandomExist() && $this->getFileHowOldIsIt() <= self::THREE_SECONDS_OF_LIFE) {
+        if ($this->fileRandomExist() && $this->fileHowOldIsIt() <= self::THREE_SECONDS_OF_LIFE) {
             $showPhoto = file_get_contents(__DIR__ . '/../../cache/random');
         }
         return $showPhoto;
