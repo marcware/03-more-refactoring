@@ -10,8 +10,11 @@ class CatApi {
     public function getRandomImage() {
 
         $showFile = new ShowFile();
+
         if ($showFile->conditionsToShowFile()) {
-            return file_get_contents(__DIR__ . '/../../cache/random');
+            return $showFile->showRandomFile();
+
+            // return file_get_contents(__DIR__ . '/../../cache/random');
         }
 
         $responseXml = new DownloadedFile();

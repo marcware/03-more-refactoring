@@ -17,7 +17,6 @@ class ShowFile {
 
     const THREE_SECONDS_OF_LIFE = 3;
 
-    //put your code here
     protected function fileHowOldIsIt() {
         return time() - filemtime(__DIR__ . '/../../cache/random');
     }
@@ -32,6 +31,10 @@ class ShowFile {
             $showPhoto = file_get_contents(__DIR__ . '/../../cache/random');
         }
         return $showPhoto;
+    }
+
+    public function showRandomFile() {
+        return file_get_contents(__DIR__ . '/../../cache/random');
     }
 
 }
