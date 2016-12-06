@@ -19,10 +19,7 @@ class CatApi {
 
         $responseElement = new \SimpleXMLElement($responseXml->getResponseXml());
 
-        file_put_contents(
-                __DIR__ . '/../../cache/random'
-                , (string) $responseElement->data->images[0]->image->url
-        );
+        $fileRandom->insertIntoFileRandom($responseElement);
 
         return (string) $responseElement->data->images[0]->image->url;
     }
