@@ -13,7 +13,7 @@ namespace CatApi;
  *
  * @author marco
  */
-class ShowFile {
+class FileRandom {
 
     const THREE_SECONDS_OF_LIFE = 3;
 
@@ -25,7 +25,7 @@ class ShowFile {
         return file_exists(__DIR__ . '/../../cache/random');
     }
 
-    public function conditionsToShowFile() {
+    public function conditionsToShowFileRandom() {
         $showPhoto = FALSE;
         if ($this->fileRandomExist() && $this->fileHowOldIsIt() <= self::THREE_SECONDS_OF_LIFE) {
             $showPhoto = file_get_contents(__DIR__ . '/../../cache/random');

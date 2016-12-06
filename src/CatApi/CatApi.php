@@ -3,18 +3,16 @@
 namespace CatApi;
 
 use CatApi\DownloadedFile;
-use CatApi\ShowFile;
+use CatApi\FileRandom;
 
 class CatApi {
 
     public function getRandomImage() {
 
-        $showFile = new ShowFile();
+        $fileRandom = new FileRandom();
 
-        if ($showFile->conditionsToShowFile()) {
-            return $showFile->showRandomFile();
-
-            // return file_get_contents(__DIR__ . '/../../cache/random');
+        if ($fileRandom->conditionsToShowFileRandom()) {
+            return $fileRandom->showRandomFile();
         }
 
         $responseXml = new DownloadedFile();
@@ -22,7 +20,8 @@ class CatApi {
         $responseElement = new \SimpleXMLElement($responseXml->getResponseXml());
 
         file_put_contents(
-                __DIR__ . '/../../cache/random', (string) $responseElement->data->images[0]->image->url
+                __DIR__ . '/../../cache/random'
+                , (string) $responseElement->data->images[0]->image->url
         );
 
         return (string) $responseElement->data->images[0]->image->url;
