@@ -1,17 +1,19 @@
 <?php
 
 namespace CatApi;
-//use CatApi\DownloadedFile;
+
+use CatApi\DownloadedFile;
 
 class CatApi {
 
     const THREE_SECONDS_OF_LIFE = 3;
 
     public function getRandomImage() {
-
         if ($this->conditionsToShowFile()) {
             return file_get_contents(__DIR__ . '/../../cache/random');
         }
+
+        $responseXml = new DownloadedFile();
 
         $responseXml = @file_get_contents(
                         'http://thecatapi.com/api/images/get?format=xml&type=jpg'
@@ -24,8 +26,7 @@ class CatApi {
         $responseElement = new \SimpleXMLElement($responseXml);
 
         file_put_contents(
-                __DIR__ . '/../../cache/random'
-                , (string) $responseElement->data->images[0]->image->url
+                __DIR__ . '/../../cache/random', (string) $responseElement->data->images[0]->image->url
         );
 
         return (string) $responseElement->data->images[0]->image->url;
