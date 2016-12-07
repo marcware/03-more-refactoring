@@ -21,7 +21,16 @@ class CatApi {
 
         $fileRandom->insertIntoFileRandom($responseElement);
 
-        return (string) $responseElement->data->images[0]->image->url;
+        return $this->obtainUrl($responseElement);
+    }
+
+    /**
+     * @param $responseElement
+     * @return string
+     */
+    private function obtainUrl($responseElement)
+    {
+        return (string)$responseElement->data->images[0]->image->url;
     }
 
 }
