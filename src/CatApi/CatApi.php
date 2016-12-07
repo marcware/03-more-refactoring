@@ -15,9 +15,7 @@ class CatApi {
             return $fileRandom->showRandomFile();
         }
 
-        $responseXml = new DownloadedFile();
-
-        $responseElement = new \SimpleXMLElement($responseXml->getResponseXml());
+        $responseElement = $this->obtainResponse();
 
         $fileRandom->insertIntoFileRandom($responseElement);
 
@@ -31,6 +29,16 @@ class CatApi {
     private function obtainUrl($responseElement)
     {
         return (string)$responseElement->data->images[0]->image->url;
+    }
+
+    /**
+     * @return \SimpleXMLElement
+     */
+    private function obtainResponse()
+    {
+        $responseXml = new DownloadedFile();
+
+        return new \SimpleXMLElement($responseXml->getResponseXml());
     }
 
 }
