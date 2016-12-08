@@ -32,10 +32,4 @@ class DownloadedFile {
     function getResponseXml() {
         return $this->responseXml;
     }
-
-    function setResponseXml($responseXml) {
-        $this->responseXml = $responseXml;
-    }
-
-
 }

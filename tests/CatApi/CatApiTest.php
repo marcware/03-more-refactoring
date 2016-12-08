@@ -25,7 +25,7 @@ class CatApiTest extends \PHPUnit_Framework_TestCase {
         $catApi = new CatApi();
 
         $firstUrl = $catApi->getRandomImage();
-        sleep(1);
+        sleep(2);
         $secondUrl = $catApi->getRandomImage();
         sleep(2);
         $thirdUrl = $catApi->getRandomImage();
